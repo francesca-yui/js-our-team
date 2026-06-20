@@ -1,4 +1,7 @@
-* {
+/* ==========================================================================
+   1. RESET & STILI GENERALI
+   ========================================================================== */
+   * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -16,7 +19,16 @@ body {
 main {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
+
+input, select, button, textarea {
+    font-family: inherit;
+}
+
+/* ==========================================================================
+   2. TITOLO E DESCRIZIONE
+   ========================================================================== */
 
 .section-title {
     margin: 20px 0;
@@ -27,17 +39,29 @@ main {
     
     font-size: 48px;
     font-weight: 1000;
-    line-height: 2;
+    line-height: 1;
 }
 
 .section-description {
-    margin: 0 auto;
-
-    justify-content: center;
+    margin: 40px;
 
     text-align: center;
     font-size: 16px;
     line-height:1.5;
+
+
+}
+
+/* ==========================================================================
+   3. TEAM CONTAINER & CARDS
+   ========================================================================== */
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
 }
 
 .team-card {
@@ -45,26 +69,30 @@ main {
     color: #fff;
 
     display: flex;
-    justify-items: left;
 
     height: 125px;
-    width: 380px;
-    margin-top: 50px;
-    margin-right: 20px;
+    width: 100%;
+    margin: 10px;    
+    max-width: 380px;
+
+    position: relative;
 }
 
 .team-card button {
-    display: none;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: none;
+
+    cursor: pointer;
+
+    position: absolute;
+    top: 10px; 
+    right: 10px;
 }
 
-.team-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.team.container::after {
-    flex: auto;
-    content: '';
+.team-card button:hover {
+    color: red;
 }
 
 .card-image {
@@ -79,16 +107,16 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: inline-block;
-    justify-content: left;
-    transition: all 1s;
+    display: block;
+    transition: transform 1s, opacity 1s;;
 }
 
 .card-image:hover img {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.1);
     opacity: 0.9;
 }
 
+/* Testi delle Card */
 .card-text{
     text-align: left;
     padding:  15px;
@@ -99,65 +127,109 @@ main {
 }
 
 .card-text h3 {
-    font-family: "Nunito", sans-serif;
     font-size: 21px;
     font-weight: 900;
+    padding-right: 25px;
 
     text-transform: uppercase;
     letter-spacing: -1px;
 }
 
 .card-text p {
-    font-family: "Nunito", sans-serif;
     font-size: 16px;
-    font-weight: 400;
 }
 
 .email {
-    font-family: "Nunito", sans-serif;
     color: #2394db;
     font-size: 12px;
-    font-weight: 400;
+    line-height: 1;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 
     margin-top: 0.5em;
 }
 
+/* ==========================================================================
+   4. FORM DI REGISTRAZIONE
+   ========================================================================== */
 .form-container {
-    max-width: 480px;
-    margin: auto;
-    margin-bottom: 30vh;
+    max-width: 500px;
+    margin: 0 auto;;
 }
 
-.form-container button {
-    margin: auto;
-    text-transform: uppercase;
+#new-member {
+    display: flex;
+    flex-direction: column;
 }
+
 
 label {
-    margin-bottom: 0.25em;
+    font-size: 14px;
+
+    margin-bottom: 0.4em;
 }
 
-input,
-select,
-button {
+input, select {
     display: block;
     width:  100%;
     margin-bottom: 1em;
-    padding: 0.25em 1em;
+    padding: 0.5em 1em;
+
+    width: 350px;
 
     border: 1px solid #cecece;
     border-radius:  4px;
     box-shadow: none;
 }
 
-button {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    color: inherit;
-    background: none;
-    box-shadow: none;
-    font: inherit;
-    text-align: inherit;
+.form-container button {
+    margin: 10px auto 0 auto;
+    text-transform: uppercase;
+
+    background-color: #2394db;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 800;
+    
+    width: 120px;
+    height: 45px;
+    border: none;
+    border-radius: 15px;
+
     cursor: pointer;
+}
+
+/* ==========================================================================
+   5. MEDIA QUERIES (Responsive)
+   ========================================================================== */
+
+/* Tablet: da 768px in su -> 2 colonne di cards */
+@media (min-width: 768px) {
+
+    .team-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 780px; /* 380px * 2 + gap */
+        margin: 0 auto;
+    }
+
+    .form-container {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+
+        max-width: 500px;
+        margin: 1vh auto;
+    }
+    
+}
+
+/* Laptop: da 1024px in su -> 3 colonne di cards */
+@media (min-width: 1024px) {
+
+    .team-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1180px; /* 380px * 3 + gap * 2 */
+    }
 }

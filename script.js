@@ -54,11 +54,11 @@ const teamMemberCardTemplate = ({name, role, email, img}) => `
       <img src="${img}" alt="${name}"/>
     </div>
     <div class="card-text">
+      <button id="${name}"><i class="bi bi-trash3"></i></button>
       <h3 class="name">${name}</h3>
       <p class="role">${role}</p>
       <p class="email">${email}</p> 
     </div>
-    <button id="${name}">Delete</button>
   </div>
 `;
 
